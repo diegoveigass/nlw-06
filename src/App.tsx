@@ -1,5 +1,18 @@
+import { Route, BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+
+import { Home } from './pages/Home';
+import { NewRoom } from './pages/NewRoom';
+
 function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Route path="/" exact component={Home} />
+        <Route path="/rooms/new" component={NewRoom} />
+      </AuthProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
