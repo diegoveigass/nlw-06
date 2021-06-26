@@ -67,8 +67,8 @@
           align-items: center;
 
           img {
-            width: 42px;
-            height: 42px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
           }
 
@@ -96,6 +96,10 @@
           }
         }
       }
+    }
+
+    .question-list {
+      margin-top: 32px;
     }
   }
 }

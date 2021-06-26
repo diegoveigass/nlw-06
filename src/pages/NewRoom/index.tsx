@@ -1,15 +1,16 @@
 import { Link, useHistory } from 'react-router-dom';
 
 import { FormEvent, useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
-import { Button } from '../components/Button';
+import { Button } from '../../components/Button';
 
-import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
+import { database } from '../../services/firebase';
 
-import '../styles/auth.scss';
-import { database } from '../services/firebase';
+import illustrationImg from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
+
+import './styles.scss';
 
 export function NewRoom() {
   const [newRoom, setNewRoom] = useState('');
@@ -34,7 +35,7 @@ export function NewRoom() {
   }
 
   return (
-    <div id="page-auth">
+    <div id="page-new-room">
       <aside>
         <img
           src={illustrationImg}
