@@ -1,13 +1,12 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
+import { useModal } from '../../hooks/useModal';
 
 import { Question } from '../../components/Question';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
-
-import { database } from '../../services/firebase';
 
 import logoImg from '../../assets/images/logo.svg';
 import deleteImg from '../../assets/images/delete.svg';
@@ -20,26 +19,17 @@ type RoomParams = {
 
 export function AdminRoom() {
   // const { user } = useAuth();
-  const history = useHistory();
   const params = useParams<RoomParams>();
+  const {
+    openConfirmModal,
+    handleSetQuestionAndRoom,
+    openEndedRoomModal,
+    handleSetRoom,
+  } = useModal();
 
   const roomId = params.id;
 
   const { title, questions } = useRoom(roomId);
-
-  async function handleDeleteQuestion(questionId: string) {
-    if (window.confirm('Tem certeza que deseja excluir essa pergunta?')) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-    }
-  }
-
-  async function handleEndRoom() {
-    await database.ref(`rooms/${roomId}`).update({
-      endedAt: new Date(),
-    });
-    history.push('/');
-  }
-
   return (
     <div id="page-admin-room">
       <header>
@@ -47,7 +37,13 @@ export function AdminRoom() {
           <img src={logoImg} alt="letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined onClick={handleEndRoom}>
+            <Button
+              isOutlined
+              onClick={() => {
+                handleSetRoom(roomId);
+                openEndedRoomModal();
+              }}
+            >
               Encerrar Sala
             </Button>
           </div>
@@ -69,7 +65,10 @@ export function AdminRoom() {
             >
               <button
                 type="button"
-                onClick={() => handleDeleteQuestion(question.id)}
+                onClick={() => {
+                  handleSetQuestionAndRoom(question.id, roomId);
+                  openConfirmModal();
+                }}
               >
                 <img src={deleteImg} alt="Remover pergunta" />
               </button>

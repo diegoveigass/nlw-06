@@ -1,6 +1,8 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+import { ContextProvider } from './contexts';
+
+import { ModalConfirm } from './components/ModalConfirm';
 
 import { Home } from './pages/Home';
 import { NewRoom } from './pages/NewRoom';
@@ -12,7 +14,8 @@ function App() {
     <>
       <Toaster />
       <BrowserRouter>
-        <AuthProvider>
+        <ContextProvider>
+          <ModalConfirm />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/rooms/new" component={NewRoom} />
@@ -20,7 +23,7 @@ function App() {
 
             <Route path="/admin/rooms/:id" component={AdminRoom} />
           </Switch>
-        </AuthProvider>
+        </ContextProvider>
       </BrowserRouter>
     </>
   );
