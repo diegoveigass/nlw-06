@@ -1,6 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
-// import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 import { useModal } from '../../hooks/useModal';
 
@@ -22,7 +21,6 @@ type RoomParams = {
 };
 
 export function AdminRoom() {
-  // const { user } = useAuth();
   const params = useParams<RoomParams>();
   const {
     openConfirmModal,
@@ -32,6 +30,8 @@ export function AdminRoom() {
   } = useModal();
 
   const roomId = params.id;
+
+  const history = useHistory();
 
   async function handleCheckQuestionAnswered(questionId: string) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
@@ -45,12 +45,16 @@ export function AdminRoom() {
     });
   }
 
+  function goToHomePage() {
+    history.push('/');
+  }
+
   const { title, questions } = useRoom(roomId);
   return (
     <div id="page-admin-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="letmeask" />
+          <img src={logoImg} alt="letmeask" onClick={goToHomePage} />
           <div>
             <RoomCode code={roomId} />
             <Button

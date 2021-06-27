@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import toast from 'react-hot-toast';
 
@@ -26,9 +26,15 @@ export function Room() {
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
 
+  const history = useHistory();
+
   const roomId = params.id;
 
   const { title, questions } = useRoom(roomId);
+
+  function goToHomePage() {
+    history.push('/');
+  }
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -75,7 +81,7 @@ export function Room() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="letmeask" />
+          <img src={logoImg} alt="letmeask" onClick={goToHomePage} />
           <RoomCode code={roomId} />
         </div>
       </header>
