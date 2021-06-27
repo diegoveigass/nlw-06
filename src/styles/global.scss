@@ -4,21 +4,26 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   background: #f8f8f8;
   color: #29292e;
+  height: 100vh;
 }
 
 body,
 input,
 button,
 textarea {
-  font: 400 16px 'Roboto', sans-serif;
+  font: 400 1.6rem 'Roboto', sans-serif;
 }
 
 .react-modal-content {
   width: 100%;
-  max-width: 576px;
+  max-width: 57.6rem;
   background: #fff;
   padding: 3rem;
 
@@ -40,4 +45,16 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .react-modal-content {
+    width: 90%;
+  }
 }

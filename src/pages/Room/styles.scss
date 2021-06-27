@@ -4,6 +4,7 @@
     border-bottom: 1px solid #e2e2e2;
 
     .content {
+      width: 100%;
       max-width: 1120px;
       margin: 0 auto;
 
@@ -12,12 +13,13 @@
       align-items: center;
 
       > img {
-        max-height: 45px;
+        max-height: 4.5rem;
       }
     }
   }
 
   main {
+    width: 100%;
     max-width: 800px;
     margin: 8px auto;
 
@@ -28,7 +30,7 @@
 
       h1 {
         font-family: 'Poppins', sans-serif;
-        font-size: 24px;
+        font-size: 2.4rem;
         color: #29292e;
       }
 
@@ -38,7 +40,7 @@
         border-radius: 16px;
         padding: 8px 16px;
         color: #fff;
-        font-size: 14px;
+        font-size: 1.4rem;
       }
     }
 
@@ -51,7 +53,7 @@
         background: #fefefe;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
         resize: vertical;
-        min-height: 130px;
+        min-height: 13rem;
       }
 
       .form-footer {
@@ -67,21 +69,21 @@
           align-items: center;
 
           img {
-            width: 32px;
-            height: 32px;
+            width: 3.2rem;
+            height: 3.2rem;
             border-radius: 50%;
           }
 
           span {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 1.4rem;
             margin-left: 8px;
             color: #29292e;
           }
         }
 
         > span {
-          font-size: 14px;
+          font-size: 1.4rem;
           color: #737380;
           font-weight: 500;
 
@@ -90,7 +92,7 @@
             border: 0;
             color: #835afd;
             text-decoration: underline;
-            font-size: 14px;
+            font-size: 1.4rem;
             font-weight: 500;
             cursor: pointer;
           }
@@ -118,5 +120,31 @@
         font-family: 'Roboto', sans-serif;
       }
     }
+  }
+}
+
+@media (max-width: 850px) {
+  #page-room {
+    main {
+      padding: 0 3.2rem;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  #page-room {
+    header .content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .form-footer {
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
   }
 }
