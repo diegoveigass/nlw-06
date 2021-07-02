@@ -1,7 +1,9 @@
-#page-room {
+import styled from 'styled-components';
+
+export const Container = styled.div`
   header {
     padding: 24px;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid #a8a8b3;
 
     .content {
       width: 100%;
@@ -14,6 +16,16 @@
 
       > img {
         max-height: 4.5rem;
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        button {
+          height: 4rem;
+        }
       }
     }
   }
@@ -31,7 +43,7 @@
       h1 {
         font-family: 'Poppins', sans-serif;
         font-size: 2.4rem;
-        color: #29292e;
+        color: ${({ theme }) => theme.colors.text};
       }
 
       span {
@@ -50,7 +62,8 @@
         border: 0;
         padding: 16px;
         border-radius: 8px;
-        background: #fefefe;
+        background: ${({ theme }) => theme.colors.textareaBackground};
+        color: ${({ theme }) => theme.colors.text};
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
         resize: vertical;
         min-height: 13rem;
@@ -78,7 +91,7 @@
             font-weight: 500;
             font-size: 1.4rem;
             margin-left: 8px;
-            color: #29292e;
+            color: ${({ theme }) => theme.colors.text};
           }
         }
 
@@ -121,30 +134,32 @@
       }
     }
   }
-}
 
-@media (max-width: 850px) {
-  #page-room {
+  @media (max-width: 850px) {
     main {
       padding: 0 3.2rem;
     }
   }
-}
 
-@media (max-width: 425px) {
-  #page-room {
+  @media (max-width: 425px) {
     header .content {
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      > div {
+        div.switcher {
+          display: none !important;
+        }
+      }
     }
   }
-}
 
-@media (max-width: 425px) {
-  .form-footer {
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
+  @media (max-width: 425px) {
+    .form-footer {
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
   }
-}
+`;

@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Switch from 'react-switch';
+import { ThemeContext } from 'styled-components';
 
 import { useRoom } from '../../hooks/useRoom';
 import { useModal } from '../../hooks/useModal';
+import { useTheme } from '../../hooks/useTheme';
 
 import { Question } from '../../components/Question';
 import { Button } from '../../components/Button';
@@ -10,17 +14,19 @@ import { RoomCode } from '../../components/RoomCode';
 import { database } from '../../services/firebase';
 
 import logoImg from '../../assets/images/logo.svg';
+import logoDarkImg from '../../assets/images/logo-dark.svg';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
 
-import './styles.scss';
+import { Container } from './styles';
 
 type RoomParams = {
   id: string;
 };
 
 export function AdminRoom() {
+  const { colors } = useContext(ThemeContext);
   const params = useParams<RoomParams>();
   const {
     openConfirmModal,
@@ -32,6 +38,8 @@ export function AdminRoom() {
   const roomId = params.id;
 
   const history = useHistory();
+
+  const { theme, toggleTheme } = useTheme();
 
   async function handleCheckQuestionAnswered(questionId: string) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
@@ -51,10 +59,14 @@ export function AdminRoom() {
 
   const { title, questions } = useRoom(roomId);
   return (
-    <div id="page-admin-room">
+    <Container id="page-admin-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="letmeask" onClick={goToHomePage} />
+          <img
+            src={theme.title === 'dark' ? logoDarkImg : logoImg}
+            alt="letmeask"
+            onClick={goToHomePage}
+          />
           <div>
             <RoomCode code={roomId} />
             <Button
@@ -66,6 +78,20 @@ export function AdminRoom() {
             >
               Encerrar Sala
             </Button>
+            <Switch
+              className="switcher"
+              checked={theme.title === 'dark'}
+              onChange={toggleTheme}
+              checkedIcon={false}
+              uncheckedIcon={false}
+              height={10}
+              width={40}
+              handleDiameter={20}
+              offColor="#835AFD"
+              offHandleColor={'#e9e9e9'}
+              onColor={colors.inputBorder}
+              onHandleColor={colors.text}
+            />
           </div>
         </div>
       </header>
@@ -117,6 +143,6 @@ export function AdminRoom() {
           ))}
         </div>
       </main>
-    </div>
+    </Container>
   );
 }

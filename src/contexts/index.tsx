@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { AuthProvider } from './AuthContext';
 import { ModalContextProvider } from './ModalContext';
+import { ThemeContextProvider } from './ThemeContext';
 
 type ContextProviderType = {
   children: ReactNode;
@@ -8,8 +9,10 @@ type ContextProviderType = {
 
 export function ContextProvider({ children }: ContextProviderType) {
   return (
-    <AuthProvider>
-      <ModalContextProvider>{children}</ModalContextProvider>
-    </AuthProvider>
+    <ThemeContextProvider>
+      <AuthProvider>
+        <ModalContextProvider>{children}</ModalContextProvider>
+      </AuthProvider>
+    </ThemeContextProvider>
   );
 }

@@ -1,7 +1,9 @@
-#page-admin-room {
+import styled from 'styled-components';
+
+export const Container = styled.div`
   header {
     padding: 24px;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid #a8a8b3;
 
     .content {
       width: 100%;
@@ -18,6 +20,7 @@
 
       > div {
         display: flex;
+        align-items: center;
         gap: 16px;
 
         button {
@@ -40,7 +43,7 @@
       h1 {
         font-family: 'Poppins', sans-serif;
         font-size: 2.4rem;
-        color: #29292e;
+        color: ${({ theme }) => theme.colors.text};
       }
 
       span {
@@ -62,18 +65,14 @@
       }
     }
   }
-}
 
-@media (max-width: 850px) {
-  #page-admin-room {
+  @media (max-width: 850px) {
     main {
       padding: 0 3.2rem;
     }
   }
-}
 
-@media (max-width: 570px) {
-  #page-admin-room {
+  @media (max-width: 600px) {
     header .content {
       display: flex;
       flex-direction: column;
@@ -83,7 +82,15 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
+
+        button {
+          width: 100%;
+        }
+
+        div.switcher {
+          display: none !important;
+        }
       }
     }
   }
-}
+`;

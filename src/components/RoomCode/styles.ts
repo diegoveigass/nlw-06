@@ -1,9 +1,13 @@
-.room-code {
+import styled from 'styled-components';
+
+export const Container = styled.button`
   height: 4rem;
   border-radius: 0.8rem;
   overflow: hidden;
 
-  background: #fff;
+  color: ${({ theme }) => theme.colors.text};
+
+  background: ${({ theme }) => theme.colors.lightBody};
   border: 0.1rem solid #835afd;
   cursor: pointer;
 
@@ -28,10 +32,8 @@
     font-size: 1.4rem;
     font-weight: 500;
   }
-}
 
-@media (max-width: 425px) {
-  .room-code {
+  @media (max-width: 425px) {
     width: 100%;
   }
-}
+`;

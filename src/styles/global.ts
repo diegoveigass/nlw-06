@@ -1,4 +1,7 @@
-* {
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyles = createGlobalStyle`
+  * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,8 +12,8 @@ html {
 }
 
 body {
-  background: #f8f8f8;
-  color: #29292e;
+  background: ${({ theme }) => theme.colors.body};
+  color: ${({ theme }) => theme.colors.text};
   height: 100vh;
 }
 
@@ -24,7 +27,7 @@ textarea {
 .react-modal-content {
   width: 100%;
   max-width: 57.6rem;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.lightBody};
   padding: 3rem;
 
   position: relative;
@@ -58,3 +61,4 @@ textarea {
     width: 90%;
   }
 }
+`;

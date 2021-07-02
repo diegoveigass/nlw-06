@@ -1,10 +1,13 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { ThemeContext } from 'styled-components';
+import Switch from 'react-switch';
 
 import toast from 'react-hot-toast';
 
 import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
+import { useTheme } from '../../hooks/useTheme';
 
 import { Question } from '../../components/Question';
 import { Button } from '../../components/Button';
@@ -13,9 +16,10 @@ import { RoomCode } from '../../components/RoomCode';
 import { database } from '../../services/firebase';
 
 import logoImg from '../../assets/images/logo.svg';
+import logoDarkImg from '../../assets/images/logo-dark.svg';
 import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
-import './styles.scss';
+import { Container } from './styles';
 
 type RoomParams = {
   id: string;
@@ -25,6 +29,10 @@ export function Room() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
+
+  const { theme, toggleTheme } = useTheme();
+
+  const { colors } = useContext(ThemeContext);
 
   const history = useHistory();
 
@@ -78,11 +86,31 @@ export function Room() {
   }
 
   return (
-    <div id="page-room">
+    <Container id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="letmeask" onClick={goToHomePage} />
-          <RoomCode code={roomId} />
+          <img
+            src={theme.title === 'dark' ? logoDarkImg : logoImg}
+            alt="letmeask"
+            onClick={goToHomePage}
+          />
+          <div>
+            <RoomCode code={roomId} />
+            <Switch
+              className="switcher"
+              checked={theme.title === 'dark'}
+              onChange={toggleTheme}
+              checkedIcon={false}
+              uncheckedIcon={false}
+              height={10}
+              width={40}
+              handleDiameter={20}
+              offColor="#835AFD"
+              offHandleColor={'#e9e9e9'}
+              onColor={colors.inputBorder}
+              onHandleColor={colors.text}
+            />
+          </div>
         </div>
       </header>
 
@@ -168,6 +196,6 @@ export function Room() {
           </div>
         )}
       </main>
-    </div>
+    </Container>
   );
 }

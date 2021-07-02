@@ -1,4 +1,6 @@
-#page-new-room {
+import styled from 'styled-components';
+
+export const Container = styled.div`
   display: flex;
   align-items: stretch;
   height: 100vh;
@@ -6,7 +8,7 @@
   aside {
     flex: 7;
 
-    background: #835afd;
+    background: ${({ theme }) => theme.colors.asideBackground};
     color: #fff;
 
     display: flex;
@@ -66,8 +68,9 @@
         height: 5rem;
         border-radius: 8px;
         padding: 0 16px;
-        background: #fff;
-        border: 1px solid #a8a8b3;
+        background: ${({ theme }) => theme.colors.lightBody};
+        border: 1px solid ${({ theme }) => theme.colors.inputBorder};
+        color: ${({ theme }) => theme.colors.text};
       }
 
       button {
@@ -141,12 +144,10 @@
       margin-left: 16px;
     }
   }
-}
 
-@media (max-width: 860px) {
-  #page-new-room {
+  @media (max-width: 860px) {
     aside {
       display: none;
     }
   }
-}
+`;
