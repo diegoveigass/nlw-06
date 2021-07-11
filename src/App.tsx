@@ -17,7 +17,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Toaster />
+      {theme.title === 'light' ? (
+        <Toaster />
+      ) : (
+        <Toaster
+          toastOptions={{
+            style: {
+              background: '#363636',
+              color: '#fff',
+            },
+          }}
+        />
+      )}
       <BrowserRouter>
         <ModalConfirm />
         <Switch>
