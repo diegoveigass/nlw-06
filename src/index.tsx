@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { ContextProvider } from './contexts';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
 
 import './services/firebase';
 
@@ -16,3 +17,4 @@ ReactDOM.render(
 );
 
 serviceWorkerRegistration.register();
+reportWebVitals();

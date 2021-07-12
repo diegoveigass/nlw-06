@@ -1,14 +1,15 @@
 {
   "short_name": "Letmeask",
-  "name": "Let Me Ask",
+  "name": "Let Me Ask App",
   "icons": [
     {
-      "src": "logo.svg",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "maskable_icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#835afd",
   "background_color": "#f8f8f8"
